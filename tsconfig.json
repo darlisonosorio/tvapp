@@ -1,0 +1,22 @@
+// prettier-ignore
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es2015", "es2016"],
+    "jsx": "react-native",
+    "downlevelIteration": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@components": ["src/components/*"],
+      "@assets": ["src/assets/*"],
+    }
+  },
+  "extends": "./node_modules/@tsconfig/react-native/tsconfig.json"
+}

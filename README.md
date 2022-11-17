@@ -1,2 +1,2 @@
-# tvapp
-TVApp React Native
+# TVApp
+React Native Project App that lists and details of series and actors.
