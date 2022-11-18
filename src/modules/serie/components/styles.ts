@@ -1,8 +1,13 @@
 import { Paragraph } from "react-native-paper";
 import { Dimensions } from 'react-native';
 import styled from "styled-components/native";
+import { ScrollView } from "react-native-gesture-handler";
 
 const { width } = Dimensions.get('screen');
+
+export const Wrapper = styled(ScrollView)`
+  max-height: 500px;
+`;
 
 export const Row = styled.View`
   flex-direction: row;

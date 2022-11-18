@@ -22,7 +22,7 @@ const EpisodeModal = ({ episode, onDismiss}: EpisodeModalProps): JSX.Element => 
     }}
   >
       {episode !== null ? (
-        <>
+        <S.Wrapper>
           <Title style={{ textAlign: 'center' }}>{episode.name}</Title>
           <Subheading>Season: {episode.season} - Episode: {episode.number}:</Subheading>
           <S.Row>
@@ -31,9 +31,8 @@ const EpisodeModal = ({ episode, onDismiss}: EpisodeModalProps): JSX.Element => 
               {removeTags(episode.summary ?? '')}
             </S.Summary>
           </S.Row>       
-        <AppRating rating={episode.rating.average} />
-          
-        </>
+          <AppRating rating={episode.rating.average} />
+        </S.Wrapper>
       ) : null}
   </Modal>
 );
