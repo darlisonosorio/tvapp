@@ -8,6 +8,8 @@ import {
   createBottomTabNavigator
 } from '@react-navigation/bottom-tabs';
 
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+
 import SeriesNavigation from './modules/serie/navigation';
 import ActorNavigation from './modules/actor/navigation';
 import { navigationTheme } from './Theme';
@@ -28,6 +30,9 @@ const tabs = [
   },
 ];
 
+const visibleTabs = tabs.map(it => it.name);
+
+
 const Routes = () => (
   <NavigationContainer
     theme={navigationTheme}
@@ -36,7 +41,10 @@ const Routes = () => (
       initialRouteName={tabs[0].name}
       screenOptions={{
         headerShown: false,
-        tabBarStyle
+        tabBarStyle: {
+          height: 64,
+          paddingBottom: 8,
+        }
       }}
     >
       {tabs.map(it => (
@@ -44,7 +52,7 @@ const Routes = () => (
           key={it.name}
           name={it.name}
           component={it.component}
-          options={{
+          options={({ route }) => ({
             tabBarIcon: ({ color }) => (
               <AppIcon
                 name={it.icon}
@@ -52,16 +60,16 @@ const Routes = () => (
                 size={28}
               />
             ),
-          }}
+            tabBarStyle: ((route) => 
+              visibleTabs.includes(getFocusedRouteNameFromRoute(route) ?? '')
+                ? {}
+                : { display: 'none' }
+            )(route),
+          })}
         />
       ))}
     </Tab.Navigator>
   </NavigationContainer>
 );
-
-const tabBarStyle = {
-  height: 64,
-  paddingBottom: 8,
-};
 
 export default Routes;

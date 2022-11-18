@@ -1,9 +1,10 @@
 import React from 'react';
 import { AppScreen, Typography } from '../../../../components';
 
-const ActorsScreen = () => {
+const ActorsScreen = ({ navigation }) => {
   return (
     <AppScreen
+      navigation={navigation}
       title="Actors"
       enableBackAction={false}
     >
