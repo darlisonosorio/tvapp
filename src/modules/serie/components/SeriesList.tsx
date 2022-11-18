@@ -9,11 +9,13 @@ type SeriesListProps = {
   onItemPress: (item: Serie) => void;
   data: Serie[];
   refreshing: boolean;
+  loading: boolean;
 }
 
 const SeriesList = ({
   data,
   refreshing,
+  loading,
   getMore,
   refresh,
   onItemPress
@@ -29,7 +31,7 @@ const SeriesList = ({
         <AppRating rating={item.rating.average / 2} />
       </AppCard>
     ))}
-    ListEmptyComponent={<AppEmptyMessage />}
+    ListEmptyComponent={loading ? null : <AppEmptyMessage />}
     refreshing={refreshing}
     onRefresh={refresh}
     onEndReached={getMore}

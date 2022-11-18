@@ -9,10 +9,12 @@ type PeopleListProps = {
   onItemPress: (item: Person) => void;
   data: Person[];
   refreshing: boolean;
+  loading: boolean;
 }
 
 const PeopleList = ({
   data,
+  loading,
   refreshing,
   getMore,
   refresh,
@@ -27,7 +29,7 @@ const PeopleList = ({
         onPress={() => onItemPress(item)}
       />
     ))}
-    ListEmptyComponent={<AppEmptyMessage />}
+    ListEmptyComponent={loading ? null : <AppEmptyMessage />}
     refreshing={refreshing}
     onRefresh={refresh}
     onEndReached={getMore}

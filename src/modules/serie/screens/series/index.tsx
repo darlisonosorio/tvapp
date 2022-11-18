@@ -44,6 +44,7 @@ const SeriesScreen = ({ navigation }) => {
         onItemPress={onSeriePress}
         getMore={getMoreSeries}
         refresh={refresh}
+        loading={loading}
       />
 
      <AppLoading visible={loading && !refreshing} /> 

@@ -44,6 +44,7 @@ const ActorsScreen = ({ navigation }) => {
           onItemPress={onSeriePress}
           getMore={getMorePeople}
           refresh={refresh}
+          loading={loading}
         />
   
        <AppLoading visible={loading && !refreshing} /> 
