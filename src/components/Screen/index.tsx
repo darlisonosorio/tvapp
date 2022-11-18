@@ -10,7 +10,7 @@ type ScreenProps = {
   customAppBar?: React.ReactNode;
   onBackAction?: () => boolean;
   enableBackAction?: boolean;
-  enableMenuAction?: boolean;
+  enableSearchAction?: boolean;
   children?: React.ReactNode;
   title?: string;
 }
@@ -22,7 +22,7 @@ const AppScreen: React.FC<ScreenProps> = ({
   customAppBar,
   onBackAction,
   enableBackAction,
-  enableMenuAction,
+  enableSearchAction,
   title,
 }) => {
   const { colors } = useTheme();
@@ -33,7 +33,7 @@ const AppScreen: React.FC<ScreenProps> = ({
       navigation={navigation}
       onPressBackAction={onBackAction}
       enableBackAction={enableBackAction}
-      enableMenuAction={enableMenuAction}
+      enableSearchAction={enableSearchAction}
     />
   );
 

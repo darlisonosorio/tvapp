@@ -1,9 +1,10 @@
 import React from 'react';
+import { ViewProps } from 'react-native';
 import { getThemeColor } from '../../utils/ThemeHelper';
 
 import S from './style';
 
-interface MatIconProps {
+interface MatIconProps extends ViewProps {
   name: string;
   color?: string;
   size?: number;
@@ -15,10 +16,17 @@ const MatIcon: React.FC<MatIconProps> = ({
   color = 'primary',
   size,
   style,
+  ...rest
 }) => {
   const iconColor = getThemeColor(color);
   return (
-    <S.Icon name={name} size={size} color={iconColor} style={style} />
+    <S.Icon
+      name={name}
+      size={size}
+      color={iconColor}
+      style={style}
+      {...rest}
+    />
   );
 };
 

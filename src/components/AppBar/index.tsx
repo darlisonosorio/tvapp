@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 import { StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AppInput from '../AppInput';
@@ -11,19 +11,21 @@ interface AppBarProps {
   searchPlaceholder?: string;
   enableBackAction?: boolean;
   onPressBackAction?: () => boolean;
-  enableMenuAction?: boolean;
+  enableSearchAction?: boolean;
   onSearchValueChange?: (value: string) => void;
+  children?: React.ReactNode;
 }
 
-const AppBar = ({
+const AppBar: React.FC<AppBarProps> = ({
     onPressBackAction,
     title,
     navigation,
     searchPlaceholder,
     enableBackAction = true,
-    enableMenuAction = true,
+    enableSearchAction = true,
     onSearchValueChange,
-  }: AppBarProps): JSX.Element => {
+    children,
+  }) => {
   const [searchValue, setSearchValue] = useState('');
   const [searchMode, setSearchMode] = useState(false);
 
@@ -35,54 +37,58 @@ const AppBar = ({
     }
   }, [onPressBackAction]);
 
-  const DefaultHomeAppBarContent = () => (
+  const SearchContent = useMemo(() => (
     <>
-      <S.BackAction
-        visible={enableBackAction}
-        disabled={!enableBackAction}
-        onPress={goBack}
-      />
-      <S.AppbarContent title={title} />
+      <S.Content>
+        <AppInput
+          placeholder={searchPlaceholder}
+          value={searchValue}
+          onChangeText={(text) => { setSearchValue(text); }}
+          onSubmitEditing={() => {
+            if (onSearchValueChange) {
+              onSearchValueChange(searchValue);
+            }
+          }}
+        />
+      </S.Content>
+      <S.Actions>
+        <S.CloseAction onPress={() => {
+          setSearchMode(false);
+          setSearchValue('');
+          if (onSearchValueChange) {
+            onSearchValueChange('');
+          }
+        }} />
+      </S.Actions>
+    </> 
+  ), [ searchValue, onSearchValueChange ]);
+
+  const TabContent = useMemo(() => (
+    <>
+      <S.Content>
+        <>
+          <S.BackAction
+            visible={enableBackAction}
+            disabled={!enableBackAction}
+            onPress={goBack}
+          />
+          <S.AppbarContent title={title} />
+        </>
+      </S.Content>
+      <S.Actions>
+        <S.SearchAction
+          visible={enableSearchAction}
+          onPress={enableSearchAction ? () => { setSearchMode(true); } : null}
+        />
+        {children}
+      </S.Actions>
     </>
-  );
+  ), [ enableBackAction ]);
 
   return (
     <S.Header>
       <StatusBar animated={false} backgroundColor="black" />
-      {searchMode ? (
-        <>
-          <S.Content>
-            <AppInput
-              placeholder={searchPlaceholder}
-              value={searchValue}
-              onChangeText={(text) => { setSearchValue(text); }}
-              onSubmitEditing={() => {
-                if (onSearchValueChange) {
-                  onSearchValueChange(searchValue);
-                }
-              }}
-            />
-          </S.Content>
-          <S.Actions visible={enableMenuAction}>
-            <S.CloseAction onPress={() => {
-              setSearchMode(false);
-              setSearchValue('');
-              if (onSearchValueChange) {
-                onSearchValueChange('');
-              }
-            }} />
-          </S.Actions>
-        </>
-      ): (
-        <>
-          <S.Content>
-            <DefaultHomeAppBarContent />
-          </S.Content>
-          <S.Actions visible={enableMenuAction}>
-            <S.SearchAction onPress={() => { setSearchMode(true); }} />
-          </S.Actions>
-        </>
-      )}
+      {searchMode ? SearchContent : TabContent}
     </S.Header>
   );
 };

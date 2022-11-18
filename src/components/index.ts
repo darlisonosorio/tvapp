@@ -5,3 +5,5 @@ export { default as Typography } from "./AppText";
 export { default as AppLoading } from "./Loading";
 export { default as AppInput} from "./AppInput";
 export { default as AppCard} from "./AppCard";
+export { default as AppRating } from "./AppRating";
+export { default as AppBadge } from "./AppBadge";

@@ -1,5 +1,10 @@
 import styled from 'styled-components/native';
+import { TouchableOpacity } from 'react-native';
 import { Card as SharedCard, Title as SharedTitle} from 'react-native-paper';
+
+export const TouchArea = styled(TouchableOpacity)`
+  height: 166px;
+`;
 
 export const Card = styled(SharedCard).attrs({
   mode: 'outlined',

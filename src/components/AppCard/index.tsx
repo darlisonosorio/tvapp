@@ -12,15 +12,17 @@ type AppCard = {
 }
 
 const AppCard: React.FC<AppCard> = ({ src, title, onPress, children }) => (
-  <S.Card onPress={onPress}>
-    <S.Wrapper>
-      <S.Image source={{ uri: src }} />
-      <S.Content>
-        <Title numberOfLines={2}>{title}</Title>
-        {children}
-      </S.Content>
-    </S.Wrapper>
-  </S.Card>
+  <S.TouchArea  onPress={onPress}>
+    <S.Card>
+      <S.Wrapper>
+        <S.Image source={{ uri: src }} />
+        <S.Content>
+          <Title numberOfLines={2}>{title}</Title>
+          {children}
+        </S.Content>
+      </S.Wrapper>
+    </S.Card>
+  </S.TouchArea>
 );
 
 export default AppCard;

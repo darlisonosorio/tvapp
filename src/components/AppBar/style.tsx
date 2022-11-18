@@ -42,15 +42,16 @@ export const Actions = styled.View<ViewChangeableProps>`
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  ${({ visible }) => visible ? '' : `
-    opacity: 0;
-  `}
 `;
 
 export const SearchAction = styled(Appbar.Action).attrs({
   color: '#333333',
   icon: 'magnify'
-})``;
+})`
+${({ visible }) => visible ? '' : `
+  opacity: 0;
+`}
+`;
 
 export const CloseAction = styled(Appbar.Action).attrs({
   color: '#333333',
