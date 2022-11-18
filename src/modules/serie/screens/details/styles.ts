@@ -10,7 +10,7 @@ export const Image = styled.Image`
 
 export const Wrapper = styled.View`
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   padding: 16px;
   background-color: ${theme.colors.primary};
 `;
@@ -58,4 +58,18 @@ export const GenresWrapper = styled.View`
 
 export const Badge = styled(AppBadge)`
   margin: 0 4px;
+`;
+
+export const SeasonWrapper = styled.View`
+  padding: 8px 16px;
+`
+export const Episode = styled.Text`
+  min-height: 42px;
+  line-height: 42px;
+  width: 100%;
+  border-width: 1px;
+  border-color: #333333;
+  color: #333333;
+  padding: 4px 12px;
+  margin-bottom: 4px;
 `;

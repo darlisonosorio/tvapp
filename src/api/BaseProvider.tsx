@@ -26,6 +26,15 @@ export default class BaseProvider<T, S> {
     }
   }
 
+  async query<K>(url, params = {}) {
+    try {
+      const result = await api.get<K[]>(this.path + url, { params });
+      return result.data;
+    } catch(e) {
+      return this.errorHandling(e);
+    }
+  }
+
   async get(id: any) {
     try {
       const result = await api.get<T[]>(`${this.path}/${id}`);

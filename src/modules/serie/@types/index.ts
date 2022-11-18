@@ -31,3 +31,18 @@ export interface SerieSchedule {
   time: string,
   days: string[],
 }
+
+export interface Episode {
+  id: number;
+  name: string;
+  url: string;
+  season: number;
+  number: number;
+  type: string;
+  airdate: Date;
+  airtime: string;
+  runtime: number;
+  rating: SerieRating;
+  image: SerieImage;
+  summary: string;
+}
