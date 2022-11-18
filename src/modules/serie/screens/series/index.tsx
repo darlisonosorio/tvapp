@@ -32,7 +32,7 @@ const SeriesScreen = ({ navigation }) => {
           searchPlaceholder="type the serie name"
           enableBackAction={false}
           onSearchValueChange={(val) => {
-            setQuery((val.trim().length >= 3) ? val.trim() : '');
+            setQuery(val.trim());
           }}
         />
       )}

@@ -36,14 +36,34 @@ const SerieDetailsScreen = ({ navigation }) => {
       
       <S.RatingWrapper>
         <S.Grade>
-          {model.rating.average}
+          - Rating: {model.rating.average}
         </S.Grade>
         <AppRating rating={model.rating.average} />
       </S.RatingWrapper>
 
+      <S.RatingWrapper>
+        <S.Grade>- {model.premiered.toString().replaceAll('-', '/')}</S.Grade>
+        {model.ended ? (
+          <>
+            <S.Grade>to</S.Grade>
+            <S.Grade>{model.ended.toString().replaceAll('-', '/')}</S.Grade>
+          </>
+        ): null}
+      </S.RatingWrapper>
+
+      { model.schedule && (model.schedule.time || model.schedule.days.length) ? (
+        <S.RatingWrapper>
+          <S.Grade>
+            {'- '}
+            {model.schedule.days.length ? model.schedule.days.join(', ') : ''}
+            {model.schedule.time ? ` at ${model.schedule.time}` : ''}
+          </S.Grade>
+        </S.RatingWrapper>
+      ) : null}
+
       <S.GenresWrapper>
         {model.genres.map(it => (
-          <S.Badge>{it}</S.Badge>
+          <S.Badge key={it}>{it}</S.Badge>
         ))}
       </S.GenresWrapper>
     </AppScreen>

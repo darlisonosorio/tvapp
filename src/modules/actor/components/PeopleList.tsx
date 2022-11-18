@@ -1,23 +1,23 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import { AppCard, AppEmptyMessage, AppRating } from '../../../components';
-import { Serie } from '../@types';
+import { Person } from '../@types';
 
-type SeriesListProps = {
+type PeopleListProps = {
   getMore: () => void;
   refresh: () => void;
-  onItemPress: (item: Serie) => void;
-  data: Serie[];
+  onItemPress: (item: Person) => void;
+  data: Person[];
   refreshing: boolean;
 }
 
-const SeriesList = ({
+const PeopleList = ({
   data,
   refreshing,
   getMore,
   refresh,
   onItemPress
-}: SeriesListProps): JSX.Element => (
+}: PeopleListProps): JSX.Element => (
   <FlatList
     data={data}
     renderItem={(({ item })=>(
@@ -25,9 +25,7 @@ const SeriesList = ({
         src={item.image?.medium}
         title={item.name}
         onPress={() => onItemPress(item)}
-      >
-        <AppRating rating={item.rating.average / 2} />
-      </AppCard>
+      />
     ))}
     ListEmptyComponent={<AppEmptyMessage />}
     refreshing={refreshing}
@@ -44,4 +42,4 @@ const SeriesList = ({
   />
 );
 
-export default SeriesList;
+export default PeopleList;

@@ -15,6 +15,7 @@ export interface Serie {
   image?: SerieImage;
   rating: SerieRating;
   summary: string;
+  schedule: SerieSchedule;
 }
 
 export interface SerieImage {
@@ -24,4 +25,9 @@ export interface SerieImage {
 
 export interface SerieRating {
   average: number;
+}
+
+export interface SerieSchedule {
+  time: string,
+  days: string[],
 }

@@ -40,7 +40,10 @@ export default (state = initialState, action: Action): SerieState => {
         favorites.push(action.value);
         action.value.favorite = true;
       }
-      return { ...state, favorites };
+      return {
+        ...state,
+        favorites: favorites.sort((a, b) => a.name.localeCompare(b.name))
+      };
     default:
       return state;
   }
