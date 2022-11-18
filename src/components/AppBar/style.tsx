@@ -1,6 +1,7 @@
 import { theme } from '../../Theme';
 import { Appbar } from 'react-native-paper';
 import styled from 'styled-components/native';
+import AppInput from '../AppInput';
 
 const textColor = '#333333';
 
@@ -57,3 +58,8 @@ export const CloseAction = styled(Appbar.Action).attrs({
   color: '#333333',
   icon: 'close'
 })``;
+
+export const Input = styled(AppInput)`
+  margin-bottom: 5px;
+  margin-left: 4px;
+`;

@@ -14,6 +14,7 @@ import SeriesNavigation from './modules/serie/navigation';
 import ActorNavigation from './modules/actor/navigation';
 import { navigationTheme } from './Theme';
 import { AppIcon } from './components';
+import FavoritesNavigation from './modules/favorite/navigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,6 +23,11 @@ const tabs = [
     name: 'Series',
     component: SeriesNavigation,
     icon: 'home',
+  },
+  {
+    name: 'Favorites',
+    component: FavoritesNavigation,
+    icon: 'star',
   },
   {
     name: 'Actors',
@@ -60,11 +66,11 @@ const Routes = () => (
                 size={28}
               />
             ),
-            tabBarStyle: ((route) => 
-              visibleTabs.includes(getFocusedRouteNameFromRoute(route) ?? '')
-                ? {}
-                : { display: 'none' }
-            )(route),
+            // tabBarStyle: ((route) => 
+            //   visibleTabs.includes(getFocusedRouteNameFromRoute(route) ?? '')
+            //     ? {}
+            //     : { display: 'none' }
+            // )(route),
           })}
         />
       ))}

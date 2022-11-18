@@ -1,7 +1,6 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import { StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import AppInput from '../AppInput';
 
 import * as S from './style';
 
@@ -40,7 +39,7 @@ const AppBar: React.FC<AppBarProps> = ({
   const SearchContent = useMemo(() => (
     <>
       <S.Content>
-        <AppInput
+        <S.Input
           placeholder={searchPlaceholder}
           value={searchValue}
           onChangeText={(text) => { setSearchValue(text); }}

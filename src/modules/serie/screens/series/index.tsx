@@ -1,10 +1,10 @@
 import React from 'react';
-import { FlatList } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { AppBar, AppCard, AppLoading, AppScreen, AppRating } from '../../../../components';
+import { AppBar, AppLoading, AppScreen } from '../../../../components';
 import { setSerie } from '../../store/actions';
 import { useSeries } from '../../hooks/useSeries';
 import { Serie } from '../../@types';
+import SeriesList from '../../components/SeriesList';
 
 const SeriesScreen = ({ navigation }) => {
   const dispatcher = useDispatch();
@@ -37,30 +37,15 @@ const SeriesScreen = ({ navigation }) => {
         />
       )}
     >
-      <FlatList
+
+      <SeriesList
         data={series}
-        renderItem={(({ item })=>(
-          <AppCard
-            src={item.image?.medium}
-            title={item.name}
-            onPress={() => onSeriePress(item)}
-          >
-          <AppRating rating={item.rating.average / 2} />
-          </AppCard>
-        ))}
         refreshing={refreshing}
-        onRefresh={refresh}
-        onEndReached={getMoreSeries}
-        onEndReachedThreshold={0.1}
-        getItemLayout={(data, index) => (
-          { length: 166, offset: 166 * index, index}
-        )}
-        initialNumToRender={5}
-        maxToRenderPerBatch={10}
-        windowSize={10}
-        contentContainerStyle={{ paddingVertical: 8 }}
+        onItemPress={onSeriePress}
+        getMore={getMoreSeries}
+        refresh={refresh}
       />
-     
+
      <AppLoading visible={loading && !refreshing} /> 
     </AppScreen>
   );
