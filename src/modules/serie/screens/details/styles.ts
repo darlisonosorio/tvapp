@@ -68,8 +68,9 @@ export const Episode = styled.Text`
   line-height: 42px;
   width: 100%;
   border-width: 1px;
-  border-color: #333333;
-  color: #333333;
+  border-color: #999999;
+  color: #000000;
+  font-weight: 500;
   padding: 4px 12px;
   margin-bottom: 4px;
 `;

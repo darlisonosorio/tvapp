@@ -14,7 +14,6 @@ export const setSerie = (value: Serie): setSerieAction => {
 };
 
 export const setFavorite = (value: Serie): setFavoriteAction => {
-  console.log('FAVORITE', value);
   return {
     type: SET_FAVORITE,
     value

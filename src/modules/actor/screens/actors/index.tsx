@@ -1,10 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { AppBar, AppLoading, AppScreen, Typography } from '../../../../components';
 import { Person } from '../../@types';
 import PeopleList from '../../components/PeopleList';
 import { usePeople } from '../../hooks/usePeople';
+import { setPerson } from '../../store/actions';
 
 const ActorsScreen = ({ navigation }) => {
+  const dispatcher = useDispatch();
     const {
       loading,
       refreshing,
@@ -15,8 +18,8 @@ const ActorsScreen = ({ navigation }) => {
     } = usePeople();
   
     const onSeriePress = (item: Person) => {
-      // dispatcher(setSerie(item));
-      navigation.navigate('PeopleDetails');
+      dispatcher(setPerson(item));
+      navigation.navigate('ActorDetails');
     };
   
     return (

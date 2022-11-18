@@ -37,11 +37,11 @@ const SerieDetailsScreen = ({ navigation }) => {
       enableBackAction
       title={model.name}
     >
+      <S.FavoriteAction
+        selected={fav}
+        onPress={() => onFavoritePress()}
+      />
       <ScrollView>
-        <S.FavoriteAction
-          selected={fav}
-          onPress={() => onFavoritePress()}
-        />
 
         <S.Wrapper>          
           <S.Image source={{ uri: model.image?.medium }} />
@@ -52,7 +52,7 @@ const SerieDetailsScreen = ({ navigation }) => {
         
         <S.RatingWrapper>
           <S.Grade>
-            - Rating: {model.rating.average}
+            - Rating: {model.rating.average ?? 0}
           </S.Grade>
           <AppRating rating={model.rating.average} />
         </S.RatingWrapper>

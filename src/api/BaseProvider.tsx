@@ -45,7 +45,6 @@ export default class BaseProvider<T, S> {
   };
 
   errorHandling(error) {
-    console.log(JSON.stringify(error.message), SERVER_URL);
     if (error.response) {
       if (error.response.status === 400) {
         throw Error('Incorrect data');
