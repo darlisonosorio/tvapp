@@ -1,2 +1,2 @@
-export const SET_SERIES = 'SET_SERIES';
+export const SET_SERIE = 'SET_SERIE';
 export const SET_FAVORITE = 'SET_FAVORITE';

@@ -2,8 +2,7 @@
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { combineReducers, createStore } from "redux";
 
-import serie from './serie/reducer';
-
+import serie from '../modules/serie/store/reducer';
 
 const RootReducer = combineReducers({
   serie,

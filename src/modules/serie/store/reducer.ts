@@ -1,23 +1,23 @@
-import { Serie } from '@src/model/serie';
+import { Serie } from '../@types';
 
 import {
-  SET_SERIES,
+  SET_SERIE,
   SET_FAVORITE,
 } from './constants';
 
 interface SerieState {
-  series: Serie[];
+  serie: Serie | null;
   favorites: Serie[];
 }
 
 export const initialState: SerieState = {
-  series: [],
+  serie: null,
   favorites: [],
 }
 
-export interface setSeriesAction {
-  type: 'SET_SERIES',
-  value: Serie[],
+export interface setSerieAction {
+  type: 'SET_SERIE',
+  value: Serie,
 }
 
 export interface setFavoriteAction {
@@ -25,12 +25,12 @@ export interface setFavoriteAction {
   value: Serie,
 }
 
-type Action = setSeriesAction | setFavoriteAction;
+type Action = setSerieAction | setFavoriteAction;
 
 export default (state = initialState, action: Action): SerieState => {
   switch(action.type) {
-    case SET_SERIES:
-      return { ...state, series: action.value };
+    case SET_SERIE:
+      return { ...state, serie: action.value };
     case SET_FAVORITE:
       const favorites = state.favorites;
       if (favorites.includes(action.value)) {
