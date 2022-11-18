@@ -6,10 +6,11 @@ import S from './style';
 
 type ScreenProps = {
   style?: any;
-  enableAppBar?: boolean;
+  navigation: any;
+  customAppBar?: React.ReactNode;
   onBackAction?: () => boolean;
   enableBackAction?: boolean;
-  homeAppBar?: boolean;
+  enableMenuAction?: boolean;
   children?: React.ReactNode;
   title?: string;
 }
@@ -17,20 +18,24 @@ type ScreenProps = {
 const AppScreen: React.FC<ScreenProps> = ({
   style,
   children,
-  enableAppBar = true,
+  navigation,
+  customAppBar,
   onBackAction,
   enableBackAction,
+  enableMenuAction,
   title,
 }) => {
   const { colors } = useTheme();
 
-  const appBar = enableAppBar ? (
+  const appBar = customAppBar ?? (
     <AppBar
       title={title}
+      navigation={navigation}
       onPressBackAction={onBackAction}
       enableBackAction={enableBackAction}
+      enableMenuAction={enableMenuAction}
     />
-  ): null;
+  );
 
   return (
     <S.Page>

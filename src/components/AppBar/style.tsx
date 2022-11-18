@@ -50,5 +50,9 @@ export const Actions = styled.View<ViewChangeableProps>`
 export const SearchAction = styled(Appbar.Action).attrs({
   color: '#333333',
   icon: 'magnify'
-})`
-`;
+})``;
+
+export const CloseAction = styled(Appbar.Action).attrs({
+  color: '#333333',
+  icon: 'close'
+})``;

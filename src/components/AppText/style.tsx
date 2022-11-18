@@ -11,35 +11,36 @@ export type TextProps = {
 const variantStyles: Map<TextVariant, string> = new Map([
   [
     'caption', `
-      font-family: 'poppings';
+      font-weight: 400;
       font-size: .9rem;
       color: #777777;
     `
   ],
   [
     'body',`
-      font-family: 'poppingsMedium';
-      font-size: 1rem;
+      font-weight: 400;
+      font-size: 12px;
       color: #53565A;
     `
   ],
   [
     'subtitle',`
-      font-family: 'poppingsSemibold';
-      font-size: 1.2rem;
+      font-weight: 500;
+      font-size: 16px;
       color: #BBBBBB;
     `
   ],
   [
     'header', `
-      font-family: 'poppingsBold',
-      font-size: 2rem;
+      font-weight: 600;
+      font-size: 24px;
       color: #000000;
     `
   ]
 ]);
 
 export const Text = styled(SharedText)<TextProps>`
+  font-family: 'poppings';
   ${({ variant }) => variantStyles[variant]}
   ${({ color }) => color ? `color: ${color};` : ''}
 `;
