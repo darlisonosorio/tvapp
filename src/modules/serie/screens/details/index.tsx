@@ -3,7 +3,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { useDispatch } from "react-redux";
 import { Title } from "react-native-paper";
 import { useTypedSelector } from "../../../../store";
-import { AppRating, AppScreen, Typography } from "../../../../components";
+import { AppRating, AppScreen } from "../../../../components";
 import { setFavorite } from "../../store/actions";
 
 import * as S from './styles';
@@ -13,10 +13,12 @@ import { Episode } from "../../@types";
 import EpisodeModal from "../../components/EpisodeModal";
 import { removeTags } from "../../../../utils/SummaryHelper";
 
-const SerieDetailsScreen = ({ navigation }) => {
+const SerieDetailsScreen = ({ route, navigation }) => {
   const dispatcher = useDispatch();
-  const { serie, favorites } = useTypedSelector(state => state.serie);
-  const [ model ] = useState(serie!);
+  
+  const { model } = route.params;
+  
+  const { favorites } = useTypedSelector(state => state.serie);
   const [ fav, setFav ] = useState(favorites.indexOf(model) !== -1);
   const { episodes } = useEpisodes(model.id);
   const [ episode, setEpisode ] = useState<Episode|null>(null);

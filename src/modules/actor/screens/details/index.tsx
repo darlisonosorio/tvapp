@@ -1,24 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { Title } from 'react-native-paper';
-import { useDispatch } from 'react-redux';
 import { Serie } from '../../../serie/@types';
-import { setSerie } from '../../../serie/store/actions';
 import { AppScreen } from '../../../../components';
-import { useTypedSelector } from '../../../../store';
 import { useCastCredits } from '../../hooks/useCastCredits';
 
 import * as S from './styles';
 
-const ActorDetailScreen = ({ navigation }) => {
-  const dispatcher = useDispatch();
-  const { person } = useTypedSelector(state => state.person);
-  const [ model ] = useState(person!);
+const ActorDetailScreen = ({ route, navigation }) => {  
+  const { model } = route.params;
   const { credits } = useCastCredits(model.id);
 
   const openSerie = (item: Serie) => {
-    dispatcher(setSerie(item));
-    navigation.navigate('ActorSerieDetails');
+    navigation.navigate('ActorSerieDetails', { model: item });
   };
 
   return (
@@ -35,7 +29,7 @@ const ActorDetailScreen = ({ navigation }) => {
           <S.Info>
             <S.InfoText>Gender: {model.gender}</S.InfoText>
             <S.InfoText>Country: {model.country?.name}</S.InfoText>
-            <S.InfoText>Birthday: {model.birthday.replaceAll('-', '/')}</S.InfoText>
+            <S.InfoText>Birthday: {model.birthday?.replaceAll('-', '/')}</S.InfoText>
             {model.deathday ? (
               <S.InfoText>Deathday: {model.deathday.replaceAll('-', '/')}</S.InfoText>
             ): null}
@@ -44,6 +38,7 @@ const ActorDetailScreen = ({ navigation }) => {
         
         <S.SeriesWrapper>
           <Title>Shows</Title>
+
           {credits.map(credit => (
             <TouchableOpacity
               key={credit.name}

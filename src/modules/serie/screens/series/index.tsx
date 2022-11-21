@@ -1,13 +1,10 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { AppBar, AppLoading, AppScreen } from '../../../../components';
-import { setSerie } from '../../store/actions';
 import { useSeries } from '../../hooks/useSeries';
 import { Serie } from '../../@types';
 import SeriesList from '../../components/SeriesList';
 
 const SeriesScreen = ({ navigation }) => {
-  const dispatcher = useDispatch();
   const {
     loading,
     refreshing,
@@ -18,8 +15,7 @@ const SeriesScreen = ({ navigation }) => {
   } = useSeries();
 
   const onSeriePress = (item: Serie) => {
-    dispatcher(setSerie(item));
-    navigation.navigate('SerieDetails');
+    navigation.navigate('SerieDetails', { model: item });
   };
 
   return (
